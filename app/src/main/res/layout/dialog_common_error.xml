@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="311.5dp"
+        android:layout_height="154.5dp"
+        android:layout_gravity="center"
+        android:background="@drawable/dialog_white_bg"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/msg"
+            android:layout_width="match_parent"
+            android:layout_height="83.5dp"
+            android:gravity="center"
+            android:textColor="@color/dialog_msg_color"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="89.5dp"
+            android:layout_height="30.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="26.5dp"
+            android:background="@drawable/btn_dialog_bg"
+            android:text="@string/confirm"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+    </RelativeLayout>
+</FrameLayout>

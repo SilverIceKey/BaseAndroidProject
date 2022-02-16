@@ -1,0 +1,3 @@
+[submodule "SKExtension"]
+	path = SKExtension
+	url = https://github.com/SilverIceKey/SKExtension.git
