@@ -21,15 +21,18 @@ import org.greenrobot.eventbus.ThreadMode
 import android.view.ViewGroup
 
 import android.widget.EditText
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.KeyboardUtils
+import com.sk.baseproject.databinding.ActivityMainBinding
 import java.util.stream.IntStream
 
 
 /**
  * 基类公用处理模块
  */
-abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), ViewInterface {
+abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity(), ViewInterface {
     lateinit var log: Logger
     var messenger: Messenger? = null
     var serviceConn: ServiceConnection? = null
@@ -41,7 +44,10 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), ViewInterfac
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLog()
-        binding = getViewBinding(getLayoutView())
+//        binding = getViewBinding(getLayoutView())
+        binding = DataBindingUtil.setContentView(this,getLayoutId())
+        setViewModel()
+        binding.lifecycleOwner = this
         val view = binding.root
 //        hideNavBar()
         setContentView(view)
@@ -282,16 +288,9 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), ViewInterfac
     abstract fun getLayoutId(): Int
 
     /**
-     * 获取界面View
+     * 设置界面数据
      */
-    fun getLayoutView(): View {
-        return layoutInflater.inflate(getLayoutId(), null)
-    }
-
-    /**
-     * 获取viewbinding
-     */
-    abstract fun getViewBinding(layoutView: View): T
+    abstract fun setViewModel()
 
     /**
      * 添加viewcontrols

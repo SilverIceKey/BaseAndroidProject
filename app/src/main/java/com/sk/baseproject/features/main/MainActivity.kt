@@ -19,8 +19,9 @@ import com.sk.baseproject.databinding.ActivityMainBinding
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun getLayoutId(): Int = R.layout.activity_main
 
-    override fun getViewBinding(layoutView: View): ActivityMainBinding {
-        return ActivityMainBinding.bind(layoutView)
+
+    override fun setViewModel() {
+
     }
 
     override fun initAndLoader() {

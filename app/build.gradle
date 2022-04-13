@@ -66,6 +66,10 @@ android {
     viewBinding {
         enabled = true
     }
+    dataBinding {
+        //noinspection DataBindingWithoutKapt
+        enabled = true
+    }
     packagingOptions {
         exclude 'META-INF/INDEX.LIST'
         exclude 'META-INF/io.netty.versions.properties'
