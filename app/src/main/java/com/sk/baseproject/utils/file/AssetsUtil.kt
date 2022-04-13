@@ -7,7 +7,7 @@ import java.io.IOException
 import java.io.InputStreamReader
 
 /**
- * assets相关公爵
+ * assets相关工具
  */
 object AssetsUtil {
     /**

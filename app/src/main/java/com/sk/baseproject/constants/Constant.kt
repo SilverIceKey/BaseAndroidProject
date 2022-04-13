@@ -24,7 +24,7 @@ object Constant {
     /***
      * 服务器地址 todo 服务器地址
      */
-    val SERVER_URL = ""
+    val SERVER_URL = "https://www.baidu.com/"
 
     /**
      * 获取加密密钥 todo 修改报名后再生成

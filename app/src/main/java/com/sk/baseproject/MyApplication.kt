@@ -38,10 +38,7 @@ class MyApplication : MultiDexApplication() {
                 }
             })
         //设置网络
-        RetrofitClient.instance.setApplicationContext(this)
-        RetrofitClient.instance.defaultConfig(ServerConfig())
-        RetrofitClient.instance.updateToken = {
-            CommonHttp.updateToken()
-        }
+//        RetrofitClient.instance.setApplicationContext(this)
+//        RetrofitClient.instance.defaultConfig(ServerConfig())
     }
 }

@@ -20,31 +20,31 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import android.view.ViewGroup
 
-import android.view.MotionEvent
-import android.view.View.OnTouchListener
-
 import android.widget.EditText
+import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.KeyboardUtils
-import java.util.*
 import java.util.stream.IntStream
 
 
 /**
  * 基类公用处理模块
  */
-abstract class BaseActivity : AppCompatActivity(), ViewInterface {
+abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), ViewInterface {
     lateinit var log: Logger
     var messenger: Messenger? = null
     var serviceConn: ServiceConnection? = null
     var serviceMessenger: Messenger? = null
     var isServiceBind: Boolean = false
     var commonErrorDialog: CommonErrorDialog? = null
+    lateinit var binding: T
     private val viewControls: MutableList<ViewControl> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLog()
+        binding = getViewBinding(getLayoutView())
+        val view = binding.root
 //        hideNavBar()
-        setContentView(getLayoutId())
+        setContentView(view)
         setupUI(window.decorView)
         viewControls.addAll(addViewControls())
         viewControlCall { it.onCreate() }
@@ -280,6 +280,18 @@ abstract class BaseActivity : AppCompatActivity(), ViewInterface {
      * 获取界面资源文件
      */
     abstract fun getLayoutId(): Int
+
+    /**
+     * 获取界面View
+     */
+    fun getLayoutView(): View {
+        return layoutInflater.inflate(getLayoutId(), null)
+    }
+
+    /**
+     * 获取viewbinding
+     */
+    abstract fun getViewBinding(layoutView: View): T
 
     /**
      * 添加viewcontrols

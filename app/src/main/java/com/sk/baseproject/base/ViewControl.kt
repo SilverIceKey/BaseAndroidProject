@@ -28,7 +28,7 @@ abstract class ViewControl(val context: Context, val view: View) {
      * 启动
      */
     fun onCreate() {
-        log = (context as BaseActivity).log
+        log = (context as BaseActivity<*>).log
         initView()
         dataLoader()
     }
@@ -58,21 +58,21 @@ abstract class ViewControl(val context: Context, val view: View) {
      * 显示通用错误弹窗
      */
     fun showCommonErrorDialog(msg: String) {
-        (context as BaseActivity).showCommonErrorDialog(msg = msg)
+        (context as BaseActivity<*>).showCommonErrorDialog(msg = msg)
     }
 
     /**
      * 变换配置
      */
     fun changePage(showPage: String) {
-        (context as BaseActivity).changePage(TAG, showPage)
+        (context as BaseActivity<*>).changePage(TAG, showPage)
     }
 
     /**
      * 发送消息到服务
      */
     fun sendMessage(messageBundle: Bundle) {
-        (context as BaseActivity).sendMessage(messageBundle)
+        (context as BaseActivity<*>).sendMessage(messageBundle)
     }
 
     /**
