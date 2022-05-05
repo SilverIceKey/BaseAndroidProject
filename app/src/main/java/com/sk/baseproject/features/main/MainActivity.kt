@@ -2,21 +2,25 @@ package com.sk.baseproject.features.main
 
 import android.Manifest
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.PermissionUtils
 import com.sk.baseproject.R
 import com.sk.baseproject.base.BaseActivity
 import com.sk.baseproject.databinding.ActivityMainBinding
+import com.sk.baseproject.features.sec.SecActivity
 
 
 /**
  * 主界面
  */
 class MainActivity : BaseActivity<ActivityMainBinding>() {
+    var secActivity: SecActivity? = null
     override fun getLayoutId(): Int = R.layout.activity_main
 
 
@@ -25,9 +29,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initAndLoader() {
-        if (!PermissionUtils.isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+        if (!PermissionUtils.isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             PermissionUtils.permission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .callback(object : PermissionUtils.SimpleCallback{
+                .callback(object : PermissionUtils.SimpleCallback {
                     override fun onGranted() {
 //                        val image = BitmapFactory.decodeFile("/storage/emulated/0/67283229_p0.jpg")
 //                        binding.image.setImageBitmap(image)
@@ -38,7 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     }
 
                 }).request()
-        }else{
+        } else {
 //            val image = BitmapFactory.decodeFile("/storage/emulated/0/67283229_p0.jpg")
 //            binding.image.setImageBitmap(image)
         }

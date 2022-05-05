@@ -6,14 +6,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/btn_dialog_bg"
         android:orientation="vertical">
 
-        <com.sk.baseproject.widget.BubbleView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <!--    <com.github.chrisbanes.photoview.PhotoView-->
-        <!--        android:id="@+id/image"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="match_parent"/>-->
+        <com.sk.baseproject.widget.DemoView
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
     </LinearLayout>
 </layout>

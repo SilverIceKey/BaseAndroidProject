@@ -126,9 +126,11 @@ dependencies {
     //---------------------第三方库引用----------------
     //kotlin 扩展相关
     implementation project(':SKExtension')
+    //内存泄漏
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
     //动画相关
-    implementation('com.airbnb.android:lottie:4.2.2')
-    implementation('com.airbnb.android:lottie-compose:4.2.2')
+//    implementation('com.airbnb.android:lottie:4.2.2')
+//    implementation('com.airbnb.android:lottie-compose:4.2.2')
     //自动适配
     implementation('com.github.JessYanCoding:AndroidAutoSize:v1.2.1')
     //动画
