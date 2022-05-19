@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--todo 包名替换-->
+<?xml version="1.0" encoding="utf-8"?><!--todo 包名替换-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.sk.baseproject">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="false"
@@ -23,7 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.sec.SecActivity"/>
+        <activity android:name=".features.sec.SecActivity" />
         <!--        todo autosize尺寸修改-->
         <meta-data
             android:name="design_width_in_dp"
