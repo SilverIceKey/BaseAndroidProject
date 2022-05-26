@@ -14,6 +14,8 @@ import com.sk.baseproject.R
 import com.sk.baseproject.base.BaseActivity
 import com.sk.baseproject.databinding.ActivityMainBinding
 import com.sk.baseproject.features.sec.SecActivity
+import com.sk.skextension.utils.media.AudioHelper
+import kotlin.concurrent.thread
 
 
 /**
@@ -21,6 +23,7 @@ import com.sk.baseproject.features.sec.SecActivity
  */
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     var secActivity: SecActivity? = null
+    var isPermissionGranted = false
     override fun getLayoutId(): Int = R.layout.activity_main
 
 
@@ -29,12 +32,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initAndLoader() {
-        if (!PermissionUtils.isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            PermissionUtils.permission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if (!PermissionUtils.isGranted(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.RECORD_AUDIO
+            )
+        ) {
+            PermissionUtils.permission(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.RECORD_AUDIO
+            )
                 .callback(object : PermissionUtils.SimpleCallback {
                     override fun onGranted() {
 //                        val image = BitmapFactory.decodeFile("/storage/emulated/0/67283229_p0.jpg")
 //                        binding.image.setImageBitmap(image)
+                        isPermissionGranted = true
                     }
 
                     override fun onDenied() {
@@ -43,6 +54,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
                 }).request()
         } else {
+            isPermissionGranted = true
 //            val image = BitmapFactory.decodeFile("/storage/emulated/0/67283229_p0.jpg")
 //            binding.image.setImageBitmap(image)
         }
