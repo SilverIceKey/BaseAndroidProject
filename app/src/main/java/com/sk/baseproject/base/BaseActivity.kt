@@ -23,16 +23,17 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.viewbinding.ViewBinding
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.blankj.utilcode.util.KeyboardUtils
-import com.sk.baseproject.databinding.ActivityMainBinding
 import java.util.stream.IntStream
 
 
 /**
  * 基类公用处理模块
  */
-abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity(), ViewInterface {
+abstract class BaseActivity<T : ViewDataBinding, M : ViewModel> : AppCompatActivity(),
+    ViewInterface {
     lateinit var log: Logger
     var messenger: Messenger? = null
     var serviceConn: ServiceConnection? = null
@@ -40,13 +41,13 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity(), ViewInte
     var isServiceBind: Boolean = false
     var commonErrorDialog: CommonErrorDialog? = null
     lateinit var binding: T
+    lateinit var viewModel: M
     private val viewControls: MutableList<ViewControl> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLog()
-//        binding = getViewBinding(getLayoutView())
-        binding = DataBindingUtil.setContentView(this,getLayoutId())
-        setViewModel()
+        binding = DataBindingUtil.setContentView(this, getLayoutId())
+        viewModel = ViewModelProvider(this).get(getViewModel())
         binding.lifecycleOwner = this
         val view = binding.root
 //        hideNavBar()
@@ -290,7 +291,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity(), ViewInte
     /**
      * 设置界面数据
      */
-    abstract fun setViewModel()
+    abstract fun getViewModel(): Class<M>
 
     /**
      * 添加viewcontrols
