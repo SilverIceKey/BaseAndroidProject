@@ -5,5 +5,5 @@ import androidx.lifecycle.ViewModel
 /**
  * 基础数据模型
  */
-class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 }

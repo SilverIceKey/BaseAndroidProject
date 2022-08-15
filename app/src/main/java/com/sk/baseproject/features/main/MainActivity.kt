@@ -1,35 +1,23 @@
 package com.sk.baseproject.features.main
 
 import android.Manifest
-import android.animation.ValueAnimator
-import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.util.Log
-import android.view.MotionEvent
-import android.view.View
-import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.PermissionUtils
 import com.sk.baseproject.R
 import com.sk.baseproject.base.BaseActivity
+import com.sk.baseproject.base.BaseViewModel
 import com.sk.baseproject.databinding.ActivityMainBinding
 import com.sk.baseproject.features.sec.SecActivity
-import com.sk.skextension.utils.media.AudioHelper
-import kotlin.concurrent.thread
 
 
 /**
  * 主界面
  */
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
     var secActivity: SecActivity? = null
     var isPermissionGranted = false
     override fun getLayoutId(): Int = R.layout.activity_main
 
-
-    override fun setViewModel() {
-
-    }
+    override fun getViewModel(): Class<BaseViewModel> = BaseViewModel::class.java
 
     override fun initAndLoader() {
         if (!PermissionUtils.isGranted(

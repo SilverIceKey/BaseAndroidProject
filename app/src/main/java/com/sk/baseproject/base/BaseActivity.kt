@@ -51,6 +51,7 @@ abstract class BaseActivity<T : ViewDataBinding, M : ViewModel> : AppCompatActiv
         binding.lifecycleOwner = this
         val view = binding.root
 //        hideNavBar()
+        setFlag()
         setContentView(view)
         setupUI(window.decorView)
         viewControls.addAll(addViewControls())
@@ -281,6 +282,13 @@ abstract class BaseActivity<T : ViewDataBinding, M : ViewModel> : AppCompatActiv
             return
         }
         commonErrorDialog?.show(supportFragmentManager, msg = msg, this::class.java.name)
+    }
+
+    /**
+     * 在载入界面前设置的方法
+     */
+    fun setFlag() {
+
     }
 
     /**
